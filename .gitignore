@@ -78,6 +78,8 @@ nb-configuration.xml
 .vscode/
 .code-workspace
 
+aws1/src/main/resources/application-local.properties
+
 ##############################
 ## OS X
 ##############################

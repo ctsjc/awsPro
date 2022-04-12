@@ -2,6 +2,7 @@ package com.example.awssdk.service;
 
 import com.example.awssdk.AWSRequestDTO;
 import com.example.awssdk.AWSResponseDTO;
+import com.example.awssdk.awsl.AmazonIdentityManagementService;
 import com.example.awssdk.awsl.S3Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 public class AWSService {
     @Autowired
     S3Service s3Service;
+
+    @Autowired
+    AmazonIdentityManagementService amazonIdentityManagementService;
 
     public List<String> listBucketNames(){
         return s3Service.listBucketNames();
@@ -35,5 +39,21 @@ public class AWSService {
         AWSResponseDTO resp = s3Service.assumeRole(awsRequestDTO);
         log.info("Response for deleteBucket {}",resp);
         return resp;
+    }
+
+    public void readPolicies(){
+        amazonIdentityManagementService.readPolicies();
+    }
+
+
+    public void attachUserPolicy(){
+        log.info("attaching UserPolicy");
+        amazonIdentityManagementService.attachUserPolicy();
+    }
+
+
+    public void createUserPolicyInline(){
+        log.info("attaching UserPolicy");
+        amazonIdentityManagementService.createUserPolicyInline();
     }
 }
