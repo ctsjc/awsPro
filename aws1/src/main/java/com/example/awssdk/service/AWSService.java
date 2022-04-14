@@ -45,6 +45,10 @@ public class AWSService {
         amazonIdentityManagementService.readPolicies();
     }
 
+    public void assumeRole1(){
+        amazonIdentityManagementService.assumeRole();
+    }
+
 
     public void attachUserPolicy(){
         log.info("attaching UserPolicy");

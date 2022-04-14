@@ -26,7 +26,7 @@ class AWSServiceS3Test {
     @Order(2)
     void listBucketNames() {
         // Get Access
-        awsService.attachUserPolicy();
+        //awsService.attachUserPolicy();
         awsService.listBucketNames().forEach(bucket ->{
             log.info("Bucket {}", bucket);
         });

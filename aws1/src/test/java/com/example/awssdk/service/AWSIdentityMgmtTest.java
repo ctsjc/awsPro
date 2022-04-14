@@ -11,6 +11,7 @@ public class AWSIdentityMgmtTest {
     @Autowired
     AWSService awsService;
 
+/*
     @Test
     void attachUserPolicy() {
         awsService.attachUserPolicy();
@@ -19,5 +20,12 @@ public class AWSIdentityMgmtTest {
     @Test
     void createUserPolicyInline() {
         awsService.createUserPolicyInline();
+    }
+*/
+
+
+    @Test
+    void assumeRole1() {
+        awsService.assumeRole1();
     }
 }

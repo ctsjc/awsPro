@@ -10,6 +10,9 @@ import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClientB
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +25,14 @@ public class AWSResources {
     String accessKey;
     @Value("${secretKey}")
     String secretKey;
+
+    @Bean
+    AWSSecurityTokenService stsClient(){
+        AWSSecurityTokenService securityTokenService= AWSSecurityTokenServiceClientBuilder.standard().
+                withCredentials(new AWSStaticCredentialsProvider(getAwsCredentials())).build();
+        return securityTokenService;
+    }
+
     @Bean
     AmazonIdentityManagement amazonIdentityManagement(){
         AmazonIdentityManagement creds = AmazonIdentityManagementClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(getAwsCredentials())).build();
